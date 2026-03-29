@@ -1,0 +1,117 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+  background-color: transparent;
+  color: #fff;
+  min-height: 80px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.locationName {
+  text-transform: capitalize;
+}
+
+.center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.navPill {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  
+}
+
+.navIcon {
+  opacity: 0.6;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-decoration: none;
+}
+
+.navIcon:hover {
+  opacity: 1;
+}
+
+.active {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  padding: 0.4rem;
+  margin: -0.4rem;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.dateTime {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  font-weight: 400;
+}
+
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 1rem 2rem;
+  }
+  
+  .dateTime {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem 1.5rem;
+  }
+  
+  .logo span {
+    display: none;
+  }
+  
+  .navPill {
+    gap: 1.25rem;
+    padding: 0.4rem 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.75rem 1rem;
+  }
+  
+  .navPill {
+    gap: 1rem;
+    padding: 0.4rem 1rem;
+  }
+}
