@@ -1,7 +1,7 @@
 import React from 'react';
 import { 
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, 
-  LineChart, Line, BarChart, Bar, Legend
+  LineChart, Line, BarChart, Bar, Legend, Brush
 } from 'recharts';
 import styles from './WeatherChart.module.css';
 
@@ -18,6 +18,10 @@ const WeatherChart = ({
 }) => {
   const formatXAxis = (time) => {
     const date = new Date(time);
+    // If it's a full date (no hours/minutes), show date
+    if (date.getHours() === 0 && date.getMinutes() === 0) {
+      return date.toLocaleDateString([], { month: 'short', day: 'numeric' });
+    }
     return date.getHours() + ':00';
   };
 
@@ -72,6 +76,13 @@ const WeatherChart = ({
             fill={`url(#color${dataKey})`} 
             strokeWidth={2}
           />
+          <Brush 
+            dataKey="time" 
+            height={30} 
+            stroke={color} 
+            fill="#1f2229"
+            tickFormatter={(time) => new Date(time).toLocaleDateString()}
+          />
         </AreaChart>
       );
     }
@@ -115,7 +126,46 @@ const WeatherChart = ({
               name={dataKey2.replace('_', ' ')}
             />
           )}
+          <Brush 
+            dataKey="time" 
+            height={30} 
+            stroke={color} 
+            fill="#1f2229"
+            tickFormatter={(time) => new Date(time).toLocaleDateString()}
+          />
         </LineChart>
+      );
+    }
+
+    if (type === 'bar') {
+      return (
+        <BarChart data={data}>
+          <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#1f2229" />
+          <XAxis 
+            dataKey="time" 
+            tickFormatter={formatXAxis} 
+            stroke="#666" 
+            fontSize={12} 
+            tickLine={false}
+            axisLine={false}
+          />
+          <YAxis 
+            stroke="#666" 
+            fontSize={12} 
+            tickLine={false}
+            axisLine={false}
+            unit={unit}
+          />
+          <Tooltip content={<CustomTooltip />} />
+          <Bar dataKey={dataKey} fill={color} radius={[4, 4, 0, 0]} />
+          <Brush 
+            dataKey="time" 
+            height={30} 
+            stroke={color} 
+            fill="#1f2229"
+            tickFormatter={(time) => new Date(time).toLocaleDateString()}
+          />
+        </BarChart>
       );
     }
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Calendar, BarChart, TrendingUp, Wind, CloudRain, Sunrise, Sunset, Activity } from 'lucide-react';
 import useWeatherStore from '../../store/useWeatherStore';
-import { fetchHistoricalData } from '../../services/weatherService';
+import { fetchHistoricalData, fetchAirQualityData } from '../../services/weatherService';
 import WeatherChart from '../../components/WeatherChart/WeatherChart';
 import styles from './Historical.module.css';
 
@@ -24,14 +24,27 @@ const Historical = () => {
     const loadHistorical = async () => {
       setLoading(true);
       try {
-        const data = await fetchHistoricalData(
-          location.lat, 
-          location.lon, 
-          dateRange.start, 
-          dateRange.end, 
-          unit
-        );
-        setHistoricalData(data);
+        const [weatherData, aqData] = await Promise.all([
+          fetchHistoricalData(
+            location.lat, 
+            location.lon, 
+            dateRange.start, 
+            dateRange.end, 
+            unit
+          ),
+          fetchAirQualityData(
+            location.lat,
+            location.lon,
+            null,
+            dateRange.start,
+            dateRange.end
+          )
+        ]);
+        
+        setHistoricalData({
+          ...weatherData,
+          hourly: aqData.hourly // AQ data is hourly
+        });
         setError(null);
       } catch (err) {
         setError('Failed to fetch historical data');

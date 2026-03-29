@@ -36,7 +36,7 @@ export const fetchWeatherData = async (lat, lon, unit = 'celsius', date = null) 
   }
 };
 
-export const fetchAirQualityData = async (lat, lon, date = null) => {
+export const fetchAirQualityData = async (lat, lon, date = null, startDate = null, endDate = null) => {
   try {
     const params = {
       latitude: lat,
@@ -49,6 +49,9 @@ export const fetchAirQualityData = async (lat, lon, date = null) => {
     if (date) {
       params.start_date = date;
       params.end_date = date;
+    } else if (startDate && endDate) {
+      params.start_date = startDate;
+      params.end_date = endDate;
     }
 
     const response = await axios.get(AIR_QUALITY_BASE_URL, { params });
@@ -70,7 +73,6 @@ export const fetchHistoricalData = async (lat, lon, startDate, endDate, unit = '
         'temperature_2m_max', 'temperature_2m_min', 'temperature_2m_mean', 
         'sunrise', 'sunset', 'precipitation_sum', 'wind_speed_10m_max', 'wind_direction_10m_dominant'
       ],
-      hourly: ['pm10', 'pm2_5'],
       temperature_unit: unit,
       timezone: 'auto'
     };
