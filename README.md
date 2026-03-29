@@ -13,6 +13,10 @@ A modern, responsive weather dashboard built with React and Vite. It provides re
   - Multiple chart types (Line, Area, Bar) for different metrics.
 - **Responsive Design**: Optimized for mobile, tablet, and desktop views.
 - **Location Based**: Weather data based on coordinates and city names.
+  
+## Screenshot
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/32d89aa3-b9b7-4545-b271-2214922ad1d7" />
+
 
 ## Tech Stack
 
