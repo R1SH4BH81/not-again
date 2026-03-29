@@ -23,7 +23,7 @@ function App() {
   }, [weatherData, getWeatherInfo]);
 
   const bgImage = useMemo(() => {
-    if (!weatherInfo) return '/Gemini_Generated_Image_surxlasurxlasurx.png';
+    if (!weatherInfo) return 'https://res.cloudinary.com/djap3kkqi/image/upload/v1774769710/Gemini_Generated_Image_surxlasurxlasurx_tfh9d5.avif';
     return getBgImage(weatherInfo.bg);
   }, [weatherInfo, getBgImage]);
 

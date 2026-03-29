@@ -45,9 +45,9 @@ const useWeatherStore = create((set) => ({
 
   getBgImage: (type) => {
     const bgs = {
-      sunny: '/Gemini_Generated_Image_surxlasurxlasurx.png',
-      rainy: '/Gemini_Generated_Image_qbweklqbweklqbwe.png',
-      overcast: '/Gemini_Generated_Image_dzx2ywdzx2ywdzx2.png'
+      sunny: 'https://res.cloudinary.com/djap3kkqi/image/upload/v1774769710/Gemini_Generated_Image_surxlasurxlasurx_tfh9d5.avif',
+      rainy: 'https://res.cloudinary.com/djap3kkqi/image/upload/v1774769693/Gemini_Generated_Image_qbweklqbweklqbwe_adptnb.avif',
+      overcast: 'https://res.cloudinary.com/djap3kkqi/image/upload/v1774769692/Gemini_Generated_Image_dzx2ywdzx2ywdzx2_jrl4a3.avif'
     };
     return bgs[type] || bgs.sunny;
   },
